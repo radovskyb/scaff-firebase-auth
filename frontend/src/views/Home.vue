@@ -13,16 +13,28 @@
             Sign in with Google
         </button>
     </div>
+
+    <button @click="sendRequestToAPI">Call API</button>
 </template>
 
 <script setup>
 import {useAuthStore} from '@/stores/authStore';
+import {protectedRoute} from '@/services/apiService';
 import {useRouter, useRoute} from 'vue-router';
 import {watch} from 'vue';
 
 const authStore = useAuthStore();
 const router = useRouter();
 const route = useRoute();
+
+const sendRequestToAPI = async () => {
+    try {
+        const resp = await protectedRoute();
+        console.log(resp);
+    } catch (error) {
+        console.error(error);
+    }
+};
 
 const signinWithGoogle = async () => {
     try {
