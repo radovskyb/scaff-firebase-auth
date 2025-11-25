@@ -1,0 +1,1 @@
+# scaff-firebase-auth
